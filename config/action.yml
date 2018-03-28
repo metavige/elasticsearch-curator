@@ -1,41 +1,21 @@
 actions:
-  1:
+  '1':
     action: delete_indices
-    description: remove topbeat indices
+    description: remove INDEX_PREFIX indices
     options:
-      ignore_empty_list: True
-      timeout_override:
-      continue_if_exception: False
-      disable_action: 
+      ignore_empty_list: true
+      timeout_override: null
+      continue_if_exception: true
+      disable_action: null
     filters:
-    - filtertype: pattern
-      kind: prefix
-      value: topbeat-
-      exclude:
-    - filtertype: age
-      source: name
-      direction: older
-      timestring: '%Y.%m.%d'
-      unit: days
-      unit_count: 7
-      exclude:
-  2:
-    action: delete_indices
-    description: remove packetbeat indices
-    options:
-      ignore_empty_list: True
-      timeout_override:
-      continue_if_exception: False
-      disable_action: 
-    filters:
-    - filtertype: pattern
-      kind: prefix
-      value: packetbeat-
-      exclude:
-    - filtertype: age
-      source: name
-      direction: older
-      timestring: '%Y.%m.%d'
-      unit: days
-      unit_count: 35
-      exclude:
+      - filtertype: pattern
+        kind: prefix
+        value: INDEX_PREFIX
+        exclude: null
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '%Y.%m.%d'
+        unit: days
+        unit_count: UNIT_COUNT
+        exclude: null
